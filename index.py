@@ -10,6 +10,7 @@ class mywindow(QtWidgets.QMainWindow):
         self.db = Database('db/list.dat')
         self.ui.setupUi(self)
         self.ui.pushButton.clicked.connect(self.btnClicked)
+        print(self.db.readDbNameList(self.db.readDb()))
     def btnClicked(self):
         if ((self.ui.lineEdit.text().strip() != '') and (self.ui.textEdit.toPlainText().strip())):
             try:
