@@ -10,7 +10,11 @@ class mywindow(QtWidgets.QMainWindow):
         self.db = Database('db/list.dat')
         self.ui.setupUi(self)
         self.ui.pushButton.clicked.connect(self.btnClicked)
-        print(self.db.readDbNameList(self.db.readDb()))
+        mm = self.db.readDbNames(self.db.readDbNameList(self.db.readDb()))
+        self.ui.comboBox.addItems(mm)
+        self.ui.pushButton_2.clicked.connect(self.comboClicked)
+    def comboClicked(self):
+        self.ui.label.setText(self.ui.comboBox.currentText())
     def btnClicked(self):
         if ((self.ui.lineEdit.text().strip() != '') and (self.ui.textEdit.toPlainText().strip())):
             try:
@@ -22,6 +26,7 @@ class mywindow(QtWidgets.QMainWindow):
                 ff.close()
                 with open('db/list/'+str(int(nums[-1])+1)+'.txt','w') as ff:
                     ff.write(self.ui.lineEdit.text().strip()+'\n')
+                    self.ui.comboBox.addItem(self.ui.lineEdit.text())
                     ff.write(self.ui.textEdit.toPlainText().strip())
                 ff.close()
             except Exception:

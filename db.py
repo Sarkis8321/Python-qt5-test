@@ -4,6 +4,7 @@ class Database:
     def readDb(self):
         l = self.f.readlines()
         l = [line.rstrip('\n') for line in l]
+        self.f.close()
         return l
     def readDbNameList(self,lis):
         nameList = []
@@ -17,6 +18,10 @@ class Database:
             else: 
                 print('данные успешно добавлены')
         return nameList
+    def readDbNames(self, lists):
+        lists = [l[0].rstrip('\n') for l in lists]
+        return lists
+
         
             
 
